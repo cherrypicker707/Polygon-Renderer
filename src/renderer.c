@@ -72,19 +72,17 @@ static unsigned int loadProgram()
     unsigned int _vertexShader = loadVertexShader();
     unsigned int _fragmentShader = loadFragmentShader();
 
-    unsigned int _program = glCreateProgram();
-    glAttachShader(_program, _vertexShader);
-    glAttachShader(_program, _fragmentShader);
-    glLinkProgram(_program);
+    program = glCreateProgram();
+    glAttachShader(program, _vertexShader);
+    glAttachShader(program, _fragmentShader);
+    glLinkProgram(program);
 
     int status;
-    glGetProgramiv(_program, GL_LINK_STATUS, &status);
+    glGetProgramiv(program, GL_LINK_STATUS, &status);
     assert(status);
 
     glDeleteShader(_vertexShader);
     glDeleteShader(_fragmentShader);
-
-    return _program;
 }
 
 void loadRenderer(int _windowWidth, int _windowHeight, const char *_windowTitle)
@@ -105,6 +103,7 @@ void loadRenderer(int _windowWidth, int _windowHeight, const char *_windowTitle)
     glViewport(0, 0, windowWidth, windowHeight);
 
     loadProgram();
+    glUseProgram(program);
 }
 
 void updateRenderer()
@@ -122,6 +121,11 @@ void clearRenderer()
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void setDrawColor(float _red, float _green, float _blue)
+{
+    glUniform3f(glGetUniformLocation(program, "color"), _red, _green, _blue);
 }
 
 bool isOpen()

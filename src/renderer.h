@@ -8,5 +8,6 @@ void updateRenderer();
 void closeRenderer();
 void clearRenderer();
 bool isOpen();
+void setDrawColor(float _red, float _green, float _blue);
 
 #endif
