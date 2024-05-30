@@ -10,17 +10,17 @@ int main()
 {
     loadRenderer(WINDOW_WIDTH, WINDOW_HEIGHT, "Polygon-Renderer");
 
-    float _vertex[] = {
-        -0.5f, -0.5f,
-        -0.5f, 0.5f,
-        0.5f, 0.5f,
-        0.5f, -0.5f
-    };
     int _n = 4;
+    Vector **_vertex = (Vector **)malloc(4 * sizeof(Vector *));
+    _vertex[0] = constructVector(-0.5, -0.5);
+    _vertex[1] = constructVector(-0.5, 0.5);
+    _vertex[2] = constructVector(0.5, 0.5);
+    _vertex[3] = constructVector(0.5, -0.5);
+    Vector *_position = constructVector(0.0, 0.0);
 
-    Polygon *_polygon = (Polygon *)createPolygon(_vertex, _n, 0.0f, 0.0f, 0.25f);
+    Polygon *_polygon = (Polygon *)constructPolygon(_vertex, _n, _position, 0.25f);
 
-    changePolygonRotationalAcceleration(_polygon, -1.0f);
+    changePolygonsAngularAcceleration(_polygon, -1.0f);
 
     float _deltaTime = 0.0f;
 
@@ -34,7 +34,7 @@ int main()
 
         updatePolygon(_polygon, _deltaTime);
 
-        renderPolygon(_polygon);
+        renderLinePolygon(_polygon);
 
         updateRenderer();
 

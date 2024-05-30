@@ -1,25 +1,32 @@
 #ifndef POLYGON
 #define POLYGON
 
+#include "vector.h"
+
 typedef struct {
     int n;
-    float *vertex;
-    float x, y;
-    float velocityX, velocityY;
-    float accelerationX, accelerationY;
-    float rotationalVelocity;
-    float rotationalAcceleration;
+    Vector **vertex;
+    Vector *position;
+    Vector *velocity;
+    Vector *acceleration;
+    double angularVelocity;
+    double angularAcceleration;
     unsigned int vao, vbo, ebo;
 } Polygon;
 
-Polygon *createPolygon(float *_vertexPosition, int _n, float _x, float _y, float _s);
-void movePolygon(Polygon *_polygon, float _x, float _y);
-void rotatePolygon(Polygon *_polygon, float _a);
-void changePolygonVelocity(Polygon *_polygon, float _x, float _y);
-void changePolygonRotationalVelocity(Polygon *_polygon, float _a);
-void changePolygonAcceleration(Polygon *_polygon, float _x, float _y);
-void changePolygonRotationalAcceleration(Polygon *_polygon, float _a);
-void updatePolygon(Polygon *_polygon, float _deltaTime);
-void renderPolygon(Polygon *_polygon);
+Polygon *constructPolygon(Vector **_vertex, unsigned int _n, Vector *_position, double _scale);
+void setPolygonsPosition(Polygon *_polygon, Vector *_position);
+void changePolygonsPosition(Polygon *_polygon, Vector *_displacement);
+void setPolygonsVelocity(Polygon *_polygon, Vector *_velocity);
+void changePolygonsVelocity(Polygon *_polygon, Vector *_changeInVelocity);
+void setPolygonsAcceleration(Polygon *_polygon, Vector *_acceleration);
+void changePolygonsAcceleration(Polygon *_polygon, Vector *_changeInAcceleration);
+void rotatePolygon(Polygon *_polygon, double _angle);
+void setPolygonsAngularVelocity(Polygon *_polygon, double _angularVelocity);
+void changePolygonsAngularVelocity(Polygon *_polygon, double _changeInAngularVelocity);
+void setPolygonsAngularAcceleration(Polygon *_polygon, double _angularAcceleration);
+void changePolygonsAngularAcceleration(Polygon *_polygon, double _changeInAngularAccleration);
+void updatePolygon(Polygon *_polygon, double _changeInTime);
+void renderLinePolygon(Polygon *_polygon);
 
 #endif
