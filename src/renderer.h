@@ -3,12 +3,12 @@
 
 #include <stdbool.h>
 
-void loadRenderer(int _windowWidth, int _windowHeight, const char *_windowTitle);
+void loadRenderer(unsigned short _windowWidth, unsigned short _windowHeight, const char *_windowTitle);
 void updateRenderer();
 void closeRenderer();
 void clearRenderer();
 bool isOpen();
-void setDrawColor(float _red, float _green, float _blue);
-bool getKey(unsigned int _key);
+void setDrawColor(double _red, double _green, double _blue);
+bool getKey(unsigned short _key);
 
 #endif

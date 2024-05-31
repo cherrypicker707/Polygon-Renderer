@@ -8,8 +8,8 @@
 #define VERTEX_SHADER_PATH "../res/vertexShader.glsl"
 #define FRAGMENT_SHADER_PATH "../res/fragmentShader.glsl"
 
-static int windowWidth;
-static int windowHeight;
+static unsigned short windowWidth;
+static unsigned short windowHeight;
 static GLFWwindow *window;
 static unsigned int program;
 
@@ -85,7 +85,7 @@ static unsigned int loadProgram()
     glDeleteShader(_fragmentShader);
 }
 
-void loadRenderer(int _windowWidth, int _windowHeight, const char *_windowTitle)
+void loadRenderer(unsigned short _windowWidth, unsigned short _windowHeight, const char *_windowTitle)
 {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -119,11 +119,11 @@ void closeRenderer()
 
 void clearRenderer()
 {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void setDrawColor(float _red, float _green, float _blue)
+void setDrawColor(double _red, double _green, double _blue)
 {
     glUniform3f(glGetUniformLocation(program, "color"), _red, _green, _blue);
 }
@@ -133,7 +133,7 @@ bool isOpen()
     return !glfwWindowShouldClose(window);
 }
 
-bool getKey(unsigned int _key)
+bool getKey(unsigned short _key)
 {
     return (glfwGetKey(window, _key) == GLFW_PRESS);
 }
