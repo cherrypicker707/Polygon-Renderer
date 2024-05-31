@@ -132,3 +132,8 @@ bool isOpen()
 {
     return !glfwWindowShouldClose(window);
 }
+
+bool getKey(unsigned int _key)
+{
+    return (glfwGetKey(window, _key) == GLFW_PRESS);
+}

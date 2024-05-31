@@ -66,8 +66,8 @@ Polygon *constructPolygon(Vector **_vertex, unsigned int _n, Vector *_position, 
     for(int _i = 0; _i < _n; _i++)
     {
         _polygon->vertex[_i] = (Vector *)malloc(sizeof(Vector));
-        _polygon->vertex[_i]->x = _scale * _vertex[_i]->x - _position->x;
-        _polygon->vertex[_i]->y = _scale * _vertex[_i]->y - _position->y;
+        _polygon->vertex[_i]->x = _scale * _vertex[_i]->x;
+        _polygon->vertex[_i]->y = _scale * _vertex[_i]->y;
     }
     _polygon->position = (Vector *)malloc(sizeof(Vector));
     _polygon->position->x = _position->x;

@@ -9,5 +9,6 @@ void closeRenderer();
 void clearRenderer();
 bool isOpen();
 void setDrawColor(float _red, float _green, float _blue);
+bool getKey(unsigned int _key);
 
 #endif
